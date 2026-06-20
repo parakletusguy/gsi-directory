@@ -1,0 +1,21 @@
+# =============================================================================
+# GSID Target Directory URLs
+# =============================================================================
+# Enter one target faculty directory list URL per line below.
+# Lines starting with '#' are ignored.
+#
+# Examples of directory lists or search pages:
+# https://www.futa.edu.ng/futa/staff-profiles
+# https://funaab.edu.ng/staff-directory
+# https://www.funai.edu.ng/staff-profiles
+#
+# You can select target homepages from the Nigerian Federal Universities list:
+# - Ahmadu Bello Zaria: https://www.abu.edu.ng
+# - University of Ibadan: https://www.ui.edu.ng
+# - University of Lagos: https://www.unilag.edu.ng
+# - Federal University Oye-Ekiti: https://www.fuoye.edu.ng
+#
+# Enter your active directory list URLs below:
+
+https://www.futa.edu.ng/futa/staff-profiles
+https://www.funai.edu.ng/staff-profiles

@@ -1,0 +1,23 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Databases
+*.db
+output/*.db
+output/*.sqlite
+
+# Local CSV Outputs / Exports
+*.csv
+output/*.csv
+gsid_faculty_outreach.csv
+
+# IDE / Editor configuration files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
