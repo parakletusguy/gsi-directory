@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="GSID Console Dashboard" description="Multi-agent harvest dashboard — KPIs, live pipeline agents, and recent runs, built from GSID components." -->
+<helmet>
+  <script src="./ds-base.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</helmet>
+<div style="min-height:100vh;background:var(--bg-page);font-family:var(--font-body);display:grid;grid-template-columns:264px 1fr;">
+
+  <aside style="background:var(--neutral-900);display:flex;flex-direction:column;padding:24px 16px;gap:32px;">
+    <div style="display:flex;align-items:center;gap:10px;padding:0 8px;">
+      <img src="../../assets/logos/gsi-mark-white.svg" alt="GSI" style="height:30px;" />
+      <div style="display:flex;flex-direction:column;line-height:1.1;">
+        <span style="font:var(--weight-bold) 16px/1 var(--font-body);color:#fff;">Directory</span>
+        <span style="font:var(--type-mono-sm);color:var(--green-300);">GSID Console</span>
+      </div>
+    </div>
+    <nav style="display:flex;flex-direction:column;gap:4px;">
+      <span style="display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--green-700);border-radius:var(--radius-md);color:#fff;font:var(--weight-semibold) 14px/1 var(--font-body);"><i data-lucide="layout-dashboard" style="width:18px;height:18px;"></i>Dashboard</span>
+      <span style="display:flex;align-items:center;gap:12px;padding:10px 12px;color:var(--neutral-300);font:var(--weight-medium) 14px/1 var(--font-body);"><i data-lucide="sparkles" style="width:18px;height:18px;"></i>New harvest</span>
+      <span style="display:flex;align-items:center;gap:12px;padding:10px 12px;color:var(--neutral-300);font:var(--weight-medium) 14px/1 var(--font-body);"><i data-lucide="users" style="width:18px;height:18px;"></i>Directory</span>
+      <span style="display:flex;align-items:center;gap:12px;padding:10px 12px;color:var(--neutral-300);font:var(--weight-medium) 14px/1 var(--font-body);"><i data-lucide="database" style="width:18px;height:18px;"></i>Sources</span>
+    </nav>
+  </aside>
+
+  <main style="padding:40px;max-width:1180px;width:100%;display:flex;flex-direction:column;gap:32px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;">
+      <div>
+        <div class="gsid-overline">Multi-agent pipeline</div>
+        <h1 style="font:var(--type-h2);margin-top:6px;">Good morning, let's harvest.</h1>
+        <p style="font:var(--type-body-lg);color:var(--text-muted);margin-top:6px;">Three agents working to make Global South research visible.</p>
+      </div>
+      <x-import component-from-global-scope="GSIDDesignSystem_019e0b.Button" size="lg" hint-size="160px,50px">Run harvest</x-import>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <x-import component-from-global-scope="GSIDDesignSystem_019e0b.StatCard" label="Total profiles" value="12,847" delta="+1,284 this run" hint-size="100%,140px"></x-import>
+      <x-import component-from-global-scope="GSIDDesignSystem_019e0b.StatCard" label="Valid emails" value="96.4%" delta="−0.8% vs target" deltaTone="warning" hint-size="100%,140px"></x-import>
+      <x-import component-from-global-scope="GSIDDesignSystem_019e0b.StatCard" label="Regions covered" value="23" delta="+2 countries" hint-size="100%,140px"></x-import>
+      <x-import component-from-global-scope="GSIDDesignSystem_019e0b.StatCard" label="Sources online" value="5 / 6" delta="AJOL degraded" deltaTone="danger" hint-size="100%,140px"></x-import>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:start;">
+      <x-import component-from-global-scope="GSIDDesignSystem_019e0b.Card" hint-size="100%,360px">
+        <x-import component-from-global-scope="GSIDDesignSystem_019e0b.CardHeader" eyebrow="Live run · r-2061" title="Pipeline" hint-size="100%,40px"></x-import>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <sc-for list="{{ agents }}" as="a" hint-placeholder-count="3">
+            <x-import component-from-global-scope="GSIDDesignSystem_019e0b.AgentStatus" name="{{ a.name }}" role="{{ a.role }}" state="{{ a.state }}" detail="{{ a.detail }}" progress="{{ a.progress }}" hint-size="100%,72px"></x-import>
+          </sc-for>
+        </div>
+        <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--border-subtle);display:flex;align-items:center;gap:10px;">
+          <i data-lucide="shield-check" style="width:16px;height:16px;color:var(--brand);"></i>
+          <span style="font:var(--type-caption);color:var(--text-muted);">Only publicly listed correspondence emails are collected. Scrapers respect robots.txt with a randomised 1–5s delay.</span>
+        </div>
+      </x-import>
+
+      <x-import component-from-global-scope="GSIDDesignSystem_019e0b.Card" padding="none" hint-size="100%,360px">
+        <div style="padding:24px 24px 12px;">
+          <x-import component-from-global-scope="GSIDDesignSystem_019e0b.CardHeader" title="Recent runs" hint-size="100%,40px"></x-import>
+        </div>
+        <sc-for list="{{ runs }}" as="r" hint-placeholder-count="4">
+          <div style="display:flex;align-items:center;gap:12px;padding:12px 24px;border-top:1px solid var(--border-subtle);">
+            <div style="flex:1;min-width:0;">
+              <div style="font:var(--type-label);color:var(--text-heading);">{{ r.title }}</div>
+              <div style="font:var(--type-mono-sm);color:var(--text-muted);margin-top:2px;">{{ r.meta }}</div>
+            </div>
+            <span style="font:var(--type-mono);color:var(--text-body);">{{ r.profiles }}</span>
+            <x-import component-from-global-scope="GSIDDesignSystem_019e0b.Badge" tone="{{ r.tone }}" dot="{{ true }}" hint-size="80px,22px">{{ r.status }}</x-import>
+          </div>
+        </sc-for>
+      </x-import>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() { this._icons(); }
+  componentDidUpdate() { this._icons(); }
+  _icons() {
+    if (window.lucide) setTimeout(() => window.lucide.createIcons(), 30);
+  }
+  renderVals() {
+    return {
+      agents: [
+        { name: 'API Harvester', role: 'OpenAlex · Zenodo · DOAJ', state: 'done', detail: '10,747 records', progress: 100 },
+        { name: 'Ethical Scraper', role: 'AJOL · NJOL', state: 'running', detail: 'page 14 / 60 · 3s delay', progress: 42 },
+        { name: 'Data Synthesizer', role: 'Standardise → dedupe → CSV', state: 'idle', detail: 'waiting for upstream', progress: null },
+      ],
+      runs: [
+        { title: 'Africa · Public health', meta: 'r-2061 · 12 min ago', profiles: '4,210', status: 'Running', tone: 'info' },
+        { title: 'Latin America · Climate science', meta: 'r-2060 · Today, 09:14', profiles: '3,118', status: 'Done', tone: 'success' },
+        { title: 'Asia · Agronomy', meta: 'r-2059 · Yesterday', profiles: '5,519', status: 'Done', tone: 'success' },
+        { title: 'Africa · All disciplines', meta: 'r-2058 · Yesterday', profiles: '—', status: 'Failed', tone: 'danger' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

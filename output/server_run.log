@@ -1,0 +1,78 @@
+--- Launching agent1_api_harvester.py with args ['--regions', 'africa', '--sources', 'zenodo', '--limit-per-country', '1'] ---
+2026-06-20 23:02:38 [INFO] Initializing harvest database...
+2026-06-20 23:02:38 [INFO] Starting Zenodo Harvester for 54 countries...
+2026-06-20 23:02:38 [INFO] Harvesting Zenodo for country: Central African Republic (CF)
+2026-06-20 23:02:40 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:02:40 [INFO] Harvesting Zenodo for country: Eritrea (ER)
+2026-06-20 23:02:42 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:02:42 [INFO] Harvesting Zenodo for country: Cabo Verde (CV)
+2026-06-20 23:02:43 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:02:43 [INFO] Harvesting Zenodo for country: Mauritius (MU)
+2026-06-20 23:02:45 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:02:45 [INFO] Harvesting Zenodo for country: Morocco (MA)
+2026-06-20 23:02:46 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:02:46 [INFO] Harvesting Zenodo for country: Namibia (NA)
+2026-06-20 23:02:48 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:02:48 [INFO] Harvesting Zenodo for country: Djibouti (DJ)
+2026-06-20 23:02:49 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:02:49 [INFO] Harvesting Zenodo for country: Ghana (GH)
+2026-06-20 23:02:51 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:02:51 [INFO] Harvesting Zenodo for country: Mali (ML)
+2026-06-20 23:02:53 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:02:53 [INFO] Harvesting Zenodo for country: Niger (NE)
+2026-06-20 23:02:55 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:02:55 [INFO] Harvesting Zenodo for country: Nigeria (NG)
+2026-06-20 23:02:57 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:02:57 [INFO] Harvesting Zenodo for country: Seychelles (SC)
+2026-06-20 23:02:58 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:02:58 [INFO] Harvesting Zenodo for country: Burkina Faso (BF)
+2026-06-20 23:02:59 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:02:59 [INFO] Harvesting Zenodo for country: Guinea-Bissau (GW)
+2026-06-20 23:03:01 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:01 [INFO] Harvesting Zenodo for country: Sudan (SD)
+2026-06-20 23:03:02 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:02 [INFO] Harvesting Zenodo for country: Sierra Leone (SL)
+2026-06-20 23:03:04 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:04 [INFO] Harvesting Zenodo for country: South Africa (ZA)
+2026-06-20 23:03:05 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:05 [INFO] Harvesting Zenodo for country: Gabon (GA)
+2026-06-20 23:03:07 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:07 [INFO] Harvesting Zenodo for country: Liberia (LR)
+2026-06-20 23:03:09 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:09 [INFO] Harvesting Zenodo for country: Mauritania (MR)
+2026-06-20 23:03:10 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:10 [INFO] Harvesting Zenodo for country: Uganda (UG)
+2026-06-20 23:03:12 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:12 [INFO] Harvesting Zenodo for country: Chad (TD)
+2026-06-20 23:03:13 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:13 [INFO] Harvesting Zenodo for country: Somalia (SO)
+2026-06-20 23:03:14 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:14 [INFO] Harvesting Zenodo for country: Benin (BJ)
+2026-06-20 23:03:16 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:16 [INFO] Harvesting Zenodo for country: Kenya (KE)
+2026-06-20 23:03:17 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:17 [INFO] Harvesting Zenodo for country: Congo (Republic) (CG)
+2026-06-20 23:03:18 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:18 [INFO] Harvesting Zenodo for country: Ivory Coast (CI)
+2026-06-20 23:03:20 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:20 [INFO] Harvesting Zenodo for country: Cameroon (CM)
+2026-06-20 23:03:21 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:21 [INFO] Harvesting Zenodo for country: Libya (LY)
+2026-06-20 23:03:23 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:23 [INFO] Harvesting Zenodo for country: Gambia (GM)
+2026-06-20 23:03:24 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:24 [INFO] Harvesting Zenodo for country: Ethiopia (ET)
+2026-06-20 23:03:26 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:26 [INFO] Harvesting Zenodo for country: Comoros (KM)
+2026-06-20 23:03:28 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:28 [INFO] Harvesting Zenodo for country: Mozambique (MZ)
+2026-06-20 23:03:29 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:29 [INFO] Harvesting Zenodo for country: Angola (AO)
+2026-06-20 23:03:30 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:30 [INFO] Harvesting Zenodo for country: Guinea (GN)
+2026-06-20 23:03:32 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:32 [INFO] Harvesting Zenodo for country: Madagascar (MG)
+2026-06-20 23:03:33 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:33 [INFO] Harvesting Zenodo for country: Congo (DRC) (CD)
+2026-06-20 23:03:34 [ERROR] Zenodo request forbidden (403) - likely Cloudflare blocking. Skipping retries.
+2026-06-20 23:03:34 [INFO] Harvesting Zenodo for country: South Sudan (SS)

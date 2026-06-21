@@ -1,0 +1,29 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Spacing scale" subtitle="8pt base with half-steps (--space-1 … --space-9)" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 22px 24px; background: var(--bg-canvas); font-family: var(--font-body); }
+  .scale { display: flex; align-items: flex-end; gap: 16px; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .bar { background: var(--green-500); border-radius: var(--radius-xs); width: 26px; }
+  .lbl { font: var(--type-mono-sm); color: var(--text-muted); }
+  .px { font: var(--type-caption); color: var(--text-faint); }
+</style>
+</head>
+<body>
+  <div class="scale">
+    <div class="item"><div class="bar" style="height:4px"></div><span class="lbl">1</span><span class="px">4</span></div>
+    <div class="item"><div class="bar" style="height:8px"></div><span class="lbl">2</span><span class="px">8</span></div>
+    <div class="item"><div class="bar" style="height:12px"></div><span class="lbl">3</span><span class="px">12</span></div>
+    <div class="item"><div class="bar" style="height:16px"></div><span class="lbl">4</span><span class="px">16</span></div>
+    <div class="item"><div class="bar" style="height:24px"></div><span class="lbl">5</span><span class="px">24</span></div>
+    <div class="item"><div class="bar" style="height:32px"></div><span class="lbl">6</span><span class="px">32</span></div>
+    <div class="item"><div class="bar" style="height:40px"></div><span class="lbl">7</span><span class="px">40</span></div>
+    <div class="item"><div class="bar" style="height:48px"></div><span class="lbl">8</span><span class="px">48</span></div>
+    <div class="item"><div class="bar" style="height:64px"></div><span class="lbl">9</span><span class="px">64</span></div>
+  </div>
+</body>
+</html>

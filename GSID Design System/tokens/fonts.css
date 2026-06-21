@@ -1,0 +1,38 @@
+/* ============================================================
+   GSID — Fonts
+   Display : Coolvetica (Ray Larabie) — brand display face,
+             self-hosted .woff in assets/fonts/. The branding deck
+             specifies Coolvetica for headlines/logotype.
+   Body    : Inter — brand body face (Google Fonts).
+   Mono    : JetBrains Mono — data, code, CSV / pipeline surfaces
+             (GSID is a data-extraction product; mono carries that voice).
+   ============================================================ */
+
+@font-face {
+  font-family: 'Coolvetica';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/coolvetica-rg.woff') format('woff');
+}
+@font-face {
+  font-family: 'Coolvetica';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/coolvetica-rg-italic.woff') format('woff');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,400..600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Raw family stacks */
+  --font-display: 'Coolvetica', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace;
+
+  /* Semantic aliases */
+  --font-heading: var(--font-display);
+  --font-ui: var(--font-body);
+  --font-data: var(--font-mono);
+}

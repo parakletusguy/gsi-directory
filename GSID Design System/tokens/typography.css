@@ -1,0 +1,59 @@
+/* ============================================================
+   GSID — Typography Scale
+   Display face Coolvetica is tight, funky, 70s-display — used ONLY
+   at large sizes for headlines, hero numbers, section titles.
+   Body is Inter. Data / identifiers / counts use JetBrains Mono.
+   ============================================================ */
+
+:root {
+  /* ---- Font sizes (rem; 1rem = 16px) ---- */
+  --text-2xs:  0.6875rem;  /* 11px — micro labels, table meta */
+  --text-xs:   0.75rem;    /* 12px */
+  --text-sm:   0.875rem;   /* 14px */
+  --text-base: 1rem;       /* 16px — body default */
+  --text-md:   1.125rem;   /* 18px */
+  --text-lg:   1.375rem;   /* 22px */
+  --text-xl:   1.75rem;    /* 28px */
+  --text-2xl:  2.25rem;    /* 36px */
+  --text-3xl:  3rem;       /* 48px */
+  --text-4xl:  4rem;       /* 64px */
+  --text-5xl:  5.5rem;     /* 88px — hero display */
+
+  /* ---- Weights ---- */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-extra:    800;
+
+  /* ---- Line heights ---- */
+  --leading-tight:   1.04;  /* display */
+  --leading-snug:    1.2;   /* headings */
+  --leading-normal:  1.5;   /* body */
+  --leading-relaxed: 1.65;  /* long-form */
+
+  /* ---- Letter spacing ---- */
+  --tracking-tight:  -0.02em;
+  --tracking-snug:   -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-caps:   0.12em;   /* eyebrows / overline labels */
+
+  /* ============================================================
+     SEMANTIC ROLES
+     ============================================================ */
+  --type-display:    var(--weight-regular) var(--text-5xl)/var(--leading-tight) var(--font-display);
+  --type-h1:         var(--weight-regular) var(--text-4xl)/var(--leading-tight) var(--font-display);
+  --type-h2:         var(--weight-regular) var(--text-3xl)/var(--leading-snug) var(--font-display);
+  --type-h3:         var(--weight-bold)    var(--text-xl)/var(--leading-snug) var(--font-body);
+  --type-h4:         var(--weight-semibold) var(--text-lg)/var(--leading-snug) var(--font-body);
+  --type-body-lg:    var(--weight-regular) var(--text-md)/var(--leading-relaxed) var(--font-body);
+  --type-body:       var(--weight-regular) var(--text-base)/var(--leading-normal) var(--font-body);
+  --type-body-sm:    var(--weight-regular) var(--text-sm)/var(--leading-normal) var(--font-body);
+  --type-label:      var(--weight-semibold) var(--text-sm)/var(--leading-snug) var(--font-body);
+  --type-caption:    var(--weight-regular) var(--text-xs)/var(--leading-normal) var(--font-body);
+  --type-overline:   var(--weight-semibold) var(--text-2xs)/var(--leading-snug) var(--font-body);
+  --type-mono:       var(--weight-regular) var(--text-sm)/var(--leading-normal) var(--font-mono);
+  --type-mono-sm:    var(--weight-regular) var(--text-xs)/var(--leading-normal) var(--font-mono);
+}

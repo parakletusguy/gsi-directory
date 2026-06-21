@@ -1,0 +1,25 @@
+<!-- @dsCard group="Type" viewport="700x230" name="Headings & body — Inter" subtitle="UI heading roles and body copy" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 22px 24px; background: var(--bg-canvas); }
+  .stack { display: flex; flex-direction: column; gap: 10px; }
+  .h3 { font: var(--type-h3); color: var(--text-heading); }
+  .h4 { font: var(--type-h4); color: var(--text-heading); }
+  .lead { font: var(--type-body-lg); color: var(--text-body); max-width: 60ch; }
+  .body { font: var(--type-body); color: var(--text-body); max-width: 60ch; }
+  .tag { font: var(--type-mono-sm); color: var(--text-faint); }
+</style>
+</head>
+<body>
+  <div class="stack">
+    <div class="h3">Harvest researcher contacts <span class="tag">— h3 · Inter Bold 22</span></div>
+    <div class="h4">From open scholarly sources <span class="tag">— h4 · Inter Semibold 18</span></div>
+    <div class="lead">The directory prioritises open APIs and ethically scrapes open-access journals. <span class="tag">— body-lg 18/1.65</span></div>
+    <div class="body">Names, affiliations and correspondence emails are standardised, deduplicated by email, and exported to a single CSV. <span class="tag">— body 16/1.5</span></div>
+  </div>
+</body>
+</html>

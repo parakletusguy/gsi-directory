@@ -1,0 +1,36 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Status accents" subtitle="Muted academic semantics — success, warning, danger, info" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg-canvas); font-family: var(--font-body); }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .cell { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle); }
+  .chip { height: 56px; display: flex; align-items: center; padding: 0 14px; color: #fff; font: var(--type-label); }
+  .foot { display: flex; align-items: center; gap: 8px; padding: 8px 12px; font: var(--type-mono-sm); color: var(--text-muted); }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="cell">
+      <div class="chip" style="background:var(--status-success)">Success</div>
+      <div class="foot"><span class="dot" style="background:var(--status-success-subtle)"></span>#298937</div>
+    </div>
+    <div class="cell">
+      <div class="chip" style="background:var(--status-warning)">Warning</div>
+      <div class="foot"><span class="dot" style="background:var(--status-warning-subtle)"></span>#B5860C</div>
+    </div>
+    <div class="cell">
+      <div class="chip" style="background:var(--status-danger)">Danger</div>
+      <div class="foot"><span class="dot" style="background:var(--status-danger-subtle)"></span>#B23A2E</div>
+    </div>
+    <div class="cell">
+      <div class="chip" style="background:var(--status-info)">Info</div>
+      <div class="foot"><span class="dot" style="background:var(--status-info-subtle)"></span>#2D6A8E</div>
+    </div>
+  </div>
+</body>
+</html>

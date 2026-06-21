@@ -1,0 +1,100 @@
+/* ============================================================
+   GSID — Colour System
+   Sources of truth (GSI Brand Guidelines):
+     #298937  brand green      #0B160D  near-black ink
+     #D4DED5  sage neutral     #D5D6D6  light grey
+   The green palette represents the vitality of African / Global
+   South scholarship and its growing potential. Greens dominate;
+   neutrals are warm-cool greys tuned to the sage. Semantic accents
+   are muted and academic — never neon.
+   ============================================================ */
+
+:root {
+  /* ---- Brand green ramp ---- */
+  --green-50:  #ECF5EE;
+  --green-100: #D2E7D7;
+  --green-200: #A9D2B2;
+  --green-300: #79B886;
+  --green-400: #4F9F60;
+  --green-500: #298937;   /* PRIMARY — brand green */
+  --green-600: #1F7A2D;   /* hover */
+  --green-700: #117122;   /* logomark green (#047414 family) */
+  --green-800: #0B5417;
+  --green-900: #073D10;
+  --green-950: #042808;
+
+  /* ---- Ink / neutral ramp (cool-warm grey tuned to sage) ---- */
+  --neutral-0:   #FFFFFF;
+  --neutral-50:  #F6F8F6;
+  --neutral-100: #EDF0EE;
+  --neutral-200: #D5D6D6;   /* brand light grey */
+  --neutral-250: #D4DED5;   /* brand sage */
+  --neutral-300: #C0C5C1;
+  --neutral-400: #969E98;
+  --neutral-500: #6C746E;
+  --neutral-600: #4E554F;
+  --neutral-700: #373D38;
+  --neutral-800: #202621;
+  --neutral-850: #181D19;
+  --neutral-900: #0B160D;   /* brand ink */
+
+  /* ---- Semantic accents (academic, muted) ---- */
+  --amber-100: #F6ECCF;
+  --amber-500: #B5860C;   /* warning / "in progress" */
+  --amber-700: #8A6608;
+
+  --brick-100: #F4DDD8;
+  --brick-500: #B23A2E;   /* danger / failed source */
+  --brick-700: #8C2A21;
+
+  --azure-100: #D7E6EF;
+  --azure-500: #2D6A8E;   /* info / API source */
+  --azure-700: #21506C;
+
+  /* ============================================================
+     SEMANTIC ALIASES — reference these in product/components
+     ============================================================ */
+
+  /* Brand */
+  --brand:          var(--green-500);
+  --brand-hover:    var(--green-600);
+  --brand-active:   var(--green-700);
+  --brand-subtle:   var(--green-50);
+  --brand-contrast: var(--neutral-0);
+
+  /* Backgrounds & surfaces */
+  --bg-page:        var(--neutral-50);
+  --bg-canvas:      var(--neutral-0);
+  --surface-card:   var(--neutral-0);
+  --surface-raised: var(--neutral-0);
+  --surface-sunken: var(--neutral-100);
+  --surface-inverse:var(--neutral-900);
+  --surface-brand:  var(--green-500);
+  --surface-brand-subtle: var(--green-50);
+
+  /* Text */
+  --text-heading:   var(--neutral-900);
+  --text-body:      var(--neutral-700);
+  --text-muted:     var(--neutral-500);
+  --text-faint:     var(--neutral-400);
+  --text-on-brand:  var(--neutral-0);
+  --text-on-dark:   var(--neutral-50);
+  --text-link:      var(--green-600);
+
+  /* Borders & dividers */
+  --border-subtle:  var(--neutral-200);
+  --border-default: var(--neutral-300);
+  --border-strong:  var(--neutral-400);
+  --border-brand:   var(--green-500);
+  --ring-focus:     color-mix(in srgb, var(--green-500) 45%, transparent);
+
+  /* Status */
+  --status-success:        var(--green-500);
+  --status-success-subtle: var(--green-50);
+  --status-warning:        var(--amber-500);
+  --status-warning-subtle: var(--amber-100);
+  --status-danger:         var(--brick-500);
+  --status-danger-subtle:  var(--brick-100);
+  --status-info:           var(--azure-500);
+  --status-info-subtle:    var(--azure-100);
+}

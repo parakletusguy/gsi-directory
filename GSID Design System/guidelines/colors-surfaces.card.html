@@ -1,0 +1,35 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Semantic surfaces & text" subtitle="Aliases for page, card, text and brand surfaces" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg-page); font-family: var(--font-body); }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .tile { border-radius: var(--radius-md); padding: 14px; height: 96px; display: flex; flex-direction: column; justify-content: space-between; }
+  .lbl { font: var(--type-mono-sm); }
+  .name { font: var(--type-label); }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="tile" style="background:var(--surface-card); border:1px solid var(--border-subtle); box-shadow:var(--shadow-sm)">
+      <span class="name" style="color:var(--text-heading)">Card</span>
+      <span class="lbl" style="color:var(--text-muted)">--surface-card</span>
+    </div>
+    <div class="tile" style="background:var(--surface-sunken); border:1px solid var(--border-subtle)">
+      <span class="name" style="color:var(--text-heading)">Sunken</span>
+      <span class="lbl" style="color:var(--text-muted)">--surface-sunken</span>
+    </div>
+    <div class="tile" style="background:var(--surface-brand)">
+      <span class="name" style="color:var(--text-on-brand)">Brand</span>
+      <span class="lbl" style="color:var(--text-on-brand)">--surface-brand</span>
+    </div>
+    <div class="tile" style="background:var(--surface-inverse)">
+      <span class="name" style="color:var(--text-on-dark)">Inverse</span>
+      <span class="lbl" style="color:var(--neutral-400)">--surface-inverse</span>
+    </div>
+  </div>
+</body>
+</html>

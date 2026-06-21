@@ -1,0 +1,66 @@
+/* ============================================================
+   GSID — Base / element defaults
+   Light reset + sensible element styling wired to tokens.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font: var(--type-body);
+  color: var(--text-body);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  color: var(--text-heading);
+  letter-spacing: var(--tracking-snug);
+}
+h1 { font: var(--type-h1); }
+h2 { font: var(--type-h2); }
+h3 { font: var(--type-h3); }
+h4 { font: var(--type-h4); }
+
+p { margin: 0; }
+
+a {
+  color: var(--text-link);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+a:hover { color: var(--brand-active); }
+
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--green-500) 24%, transparent);
+  color: var(--neutral-900);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-xs);
+}
+
+hr {
+  border: none;
+  border-top: var(--border-hairline) solid var(--border-subtle);
+  margin: var(--space-5) 0;
+}
+
+/* Utility: eyebrow / overline label */
+.gsid-overline {
+  font: var(--type-overline);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--brand);
+}

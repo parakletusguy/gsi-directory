@@ -1,0 +1,29 @@
+<!-- @dsCard group="Type" viewport="700x180" name="Mono & overline" subtitle="Data voice (JetBrains Mono) and tracked eyebrow labels" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 22px 24px; background: var(--bg-canvas); }
+  .stack { display: flex; flex-direction: column; gap: 14px; }
+  .over { font: var(--type-overline); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--brand); }
+  .mono { font: var(--type-mono); color: var(--text-body); }
+  .mono b { color: var(--brand); font-weight: var(--weight-semibold); }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .tag { font: var(--type-caption); color: var(--text-faint); }
+</style>
+</head>
+<body>
+  <div class="stack">
+    <div>
+      <div class="over">Multi-agent pipeline</div>
+      <div class="tag">overline · 11px semibold · 0.12em tracked · uppercase</div>
+    </div>
+    <div>
+      <div class="mono"><b>1,284</b> profiles · <b>OpenAlex</b> · gsid_export_2026-06-11.csv</div>
+      <div class="tag">JetBrains Mono · --font-mono · counts, sources, filenames</div>
+    </div>
+  </div>
+</body>
+</html>

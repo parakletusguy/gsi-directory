@@ -1,0 +1,33 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Neutral / ink ramp" subtitle="Warm-cool greys tuned to brand sage; ink #0B160D" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--bg-canvas); font-family: var(--font-body); }
+  .row { display: flex; gap: 0; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border-subtle); }
+  .sw { flex: 1; height: 92px; display: flex; align-items: flex-end; padding: 8px; }
+  .sw span { font: var(--type-mono-sm); }
+  .meta { display: flex; gap: 6px; margin-top: 10px; font: var(--type-caption); color: var(--text-muted); }
+  .meta b { color: var(--text-heading); font-weight: var(--weight-semibold); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw" style="background:var(--neutral-0); border-right:1px solid var(--border-subtle)"><span style="color:#0B160D">0</span></div>
+    <div class="sw" style="background:var(--neutral-50)"><span style="color:#0B160D">50</span></div>
+    <div class="sw" style="background:var(--neutral-100)"><span style="color:#0B160D">100</span></div>
+    <div class="sw" style="background:var(--neutral-200)"><span style="color:#0B160D">200</span></div>
+    <div class="sw" style="background:var(--neutral-250)"><span style="color:#0B160D">sage</span></div>
+    <div class="sw" style="background:var(--neutral-300)"><span style="color:#0B160D">300</span></div>
+    <div class="sw" style="background:var(--neutral-400)"><span style="color:#fff">400</span></div>
+    <div class="sw" style="background:var(--neutral-500)"><span style="color:#fff">500</span></div>
+    <div class="sw" style="background:var(--neutral-600)"><span style="color:#fff">600</span></div>
+    <div class="sw" style="background:var(--neutral-700)"><span style="color:#fff">700</span></div>
+    <div class="sw" style="background:var(--neutral-800)"><span style="color:#fff">800</span></div>
+    <div class="sw" style="background:var(--neutral-900)"><span style="color:#fff">900</span></div>
+  </div>
+  <div class="meta"><b>--neutral-200</b> #D5D6D6 · brand grey &nbsp;·&nbsp; <b>--neutral-250</b> #D4DED5 · brand sage &nbsp;·&nbsp; <b>--neutral-900</b> #0B160D · ink</div>
+</body>
+</html>

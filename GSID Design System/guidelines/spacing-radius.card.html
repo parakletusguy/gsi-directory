@@ -1,0 +1,26 @@
+<!-- @dsCard group="Spacing" viewport="700x160" name="Radius scale" subtitle="From 3px controls to pill" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 22px 24px; background: var(--bg-canvas); font-family: var(--font-body); }
+  .row { display: flex; gap: 18px; align-items: flex-end; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .box { width: 72px; height: 56px; background: var(--green-50); border: 1.5px solid var(--green-500); }
+  .lbl { font: var(--type-mono-sm); color: var(--text-muted); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="item"><div class="box" style="border-radius:var(--radius-xs)"></div><span class="lbl">xs · 3</span></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-sm)"></div><span class="lbl">sm · 6</span></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-md)"></div><span class="lbl">md · 10</span></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-lg)"></div><span class="lbl">lg · 14</span></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-xl)"></div><span class="lbl">xl · 20</span></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-2xl)"></div><span class="lbl">2xl · 28</span></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-pill)"></div><span class="lbl">pill</span></div>
+  </div>
+</body>
+</html>

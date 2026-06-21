@@ -1,0 +1,75 @@
+/* ============================================================
+   GSID — Spacing, Radius, Shadow, Border, Motion, Layout
+   8pt-based spacing. Calm, sturdy, academic-feeling surfaces:
+   soft (not pillowy) radii, low-spread green-tinted shadows,
+   1px hairline borders. No glassmorphism, no heavy gradients.
+   ============================================================ */
+
+:root {
+  /* ---- Spacing (8pt base, with half-steps) ---- */
+  --space-0:   0;
+  --space-1:   0.25rem;  /* 4 */
+  --space-2:   0.5rem;   /* 8 */
+  --space-3:   0.75rem;  /* 12 */
+  --space-4:   1rem;     /* 16 */
+  --space-5:   1.5rem;   /* 24 */
+  --space-6:   2rem;     /* 32 */
+  --space-7:   2.5rem;   /* 40 */
+  --space-8:   3rem;     /* 48 */
+  --space-9:   4rem;     /* 64 */
+  --space-10:  5rem;     /* 80 */
+  --space-11:  6rem;     /* 96 */
+  --space-12:  8rem;     /* 128 */
+
+  /* ---- Radius ---- */
+  --radius-xs:   3px;
+  --radius-sm:   6px;
+  --radius-md:   10px;   /* default control / card */
+  --radius-lg:   14px;
+  --radius-xl:   20px;
+  --radius-2xl:  28px;
+  --radius-pill: 999px;
+
+  /* ---- Border widths ---- */
+  --border-hairline: 1px;
+  --border-thick:    1.5px;
+  --border-heavy:    2px;
+
+  /* ---- Shadows (green-tinted, low-spread, never blue) ---- */
+  --shadow-xs:  0 1px 2px rgba(11, 22, 13, 0.06);
+  --shadow-sm:  0 1px 3px rgba(11, 22, 13, 0.08), 0 1px 2px rgba(11, 22, 13, 0.04);
+  --shadow-md:  0 4px 12px rgba(11, 22, 13, 0.08), 0 1px 3px rgba(11, 22, 13, 0.05);
+  --shadow-lg:  0 12px 28px rgba(11, 22, 13, 0.12), 0 2px 6px rgba(11, 22, 13, 0.06);
+  --shadow-xl:  0 24px 56px rgba(11, 22, 13, 0.16), 0 4px 10px rgba(11, 22, 13, 0.07);
+  --shadow-brand: 0 8px 24px rgba(41, 137, 55, 0.24);
+  --shadow-inset: inset 0 1px 2px rgba(11, 22, 13, 0.06);
+
+  /* ---- Focus ring ---- */
+  --focus-ring: 0 0 0 3px var(--ring-focus);
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.2, 0, 0.1, 1);   /* @kind other */
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);  /* @kind other */
+  --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --duration-fast:   120ms;   /* @kind other */
+  --duration-base:   200ms;   /* @kind other */
+  --duration-slow:   320ms;   /* @kind other */
+
+  /* ---- Layout ---- */
+  --container-sm:  640px;
+  --container-md:  840px;
+  --container-lg:  1080px;
+  --container-xl:  1280px;
+  --container-2xl: 1440px;
+  --gutter:        var(--space-5);
+  --sidebar-width: 264px;
+  --topbar-height: 60px;
+
+  /* ---- Z-index ---- */
+  --z-base:      0;     /* @kind other */
+  --z-sticky:    100;   /* @kind other */
+  --z-overlay:   400;   /* @kind other */
+  --z-modal:     500;   /* @kind other */
+  --z-toast:     600;   /* @kind other */
+  --z-tooltip:   700;   /* @kind other */
+}

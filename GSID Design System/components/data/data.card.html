@@ -1,0 +1,56 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Data — agents, sources, stats" subtitle="AgentStatus, SourceChip, StatCard, ProgressBar" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; padding: 24px; background: var(--bg-page); }
+  .wrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; align-items: start; }
+  .col { display: flex; flex-direction: column; gap: 12px; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .chips { display: flex; gap: 10px; flex-wrap: wrap; }
+  i[data-lucide] { width: 18px; height: 18px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { AgentStatus, SourceChip, StatCard, ProgressBar } = window.GSIDDesignSystem_019e0b;
+  const Ic = (n) => <i data-lucide={n}></i>;
+  function Demo() {
+    return (
+      <div className="wrap">
+        <div className="col">
+          <AgentStatus name="API Harvester" role="OpenAlex · Zenodo" state="running" detail="page 14 / 60" progress={42} icon={Ic('bot')} />
+          <AgentStatus name="Ethical Scraper" role="AJOL · NJOL" state="idle" detail="rate-limited 3s" icon={Ic('globe')} />
+          <AgentStatus name="Data Synthesizer" role="Dedupe → CSV" state="done" detail="1,284 records" icon={Ic('file-spreadsheet')} />
+          <div className="chips">
+            <SourceChip name="OpenAlex" type="api" health="online" count="8,902" />
+            <SourceChip name="DOAJ" type="api" health="online" />
+            <SourceChip name="AJOL" type="scrape" health="degraded" count="2,140" />
+            <SourceChip name="NJOL" type="scrape" health="offline" />
+          </div>
+        </div>
+        <div className="col">
+          <div className="stats">
+            <StatCard label="Profiles" value="12,847" delta="+1,284 run" icon={Ic('users')} />
+            <StatCard label="Valid emails" value="96.4%" delta="−0.8% target" deltaTone="warning" icon={Ic('mail-check')} />
+          </div>
+          <ProgressBar value={68} label="OpenAlex — Nigeria" showValue />
+          <ProgressBar indeterminate tone="info" label="Connecting to DOAJ…" />
+          <ProgressBar value={100} tone="success" label="Brazil — complete" showValue />
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+  setTimeout(() => window.lucide && window.lucide.createIcons(), 60);
+</script>
+</body>
+</html>

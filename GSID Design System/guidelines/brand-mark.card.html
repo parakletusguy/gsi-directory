@@ -1,0 +1,26 @@
+<!-- @dsCard group="Brand" viewport="700x180" name="Logomark" subtitle="G.S.I. mark — ship's radar + bookmark. App icon / favicon. Never redraw." -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 0; background: var(--bg-canvas); font-family: var(--font-body); }
+  .wrap { display: flex; align-items: stretch; }
+  .cell { flex: 1; display: flex; align-items: center; justify-content: center; padding: 28px; min-height: 150px; }
+  .a { background: var(--neutral-0); border-right: 1px solid var(--border-subtle); }
+  .b { background: var(--neutral-50); border-right: 1px solid var(--border-subtle); }
+  .c { background: var(--green-700); }
+  .cell img { height: 64px; width: auto; }
+  .badge { display:flex; align-items:center; justify-content:center; background: var(--green-500); width: 84px; height: 84px; border-radius: var(--radius-xl); box-shadow: var(--shadow-brand); }
+  .badge img { height: 44px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="cell a"><img src="../assets/logos/gsi-mark-green.svg" alt="mark green"></div>
+    <div class="cell b"><div class="badge"><img src="../assets/logos/gsi-mark-white.svg" alt="app icon"></div></div>
+    <div class="cell c"><img src="../assets/logos/gsi-mark-white.svg" alt="mark white"></div>
+  </div>
+</body>
+</html>
