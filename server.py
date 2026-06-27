@@ -1,44 +1,55 @@
 import os
 import sys
 import json
-import sqlite3
 import subprocess
 import threading
 import glob
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 from urllib.parse import urlparse
 
+import psycopg2
+from psycopg2.extras import RealDictCursor
+
 PORT = 8000
-DB_FILE = os.path.join("output", "gsid_harvest.db")
+DATABASE_URL = os.environ.get(
+    "DATABASE_URL",
+    "postgresql://neondb_owner:npg_d5oBFwAVaQ1q@ep-bold-wind-a94p7ja1-pooler.gwc.azure.neon.tech/neondb?sslmode=require&channel_binding=require"
+)
 LOG_FILE = os.path.join("output", "server_run.log")
 
 active_process = None
 active_process_lock = threading.Lock()
 
+def get_db_connection():
+    return psycopg2.connect(DATABASE_URL)
+
+
 def init_db():
     """Ensure output folder and database table exist."""
     os.makedirs("output", exist_ok=True)
-    conn = sqlite3.connect(DB_FILE)
-    cursor = conn.cursor()
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS harvested_records (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            display_name TEXT NOT NULL,
-            email TEXT,
-            institution_name TEXT,
-            institution_country TEXT,
-            openalex_id TEXT,
-            source TEXT NOT NULL,
-            article_title TEXT,
-            article_url TEXT,
-            specialisation TEXT,
-            keywords TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            UNIQUE(display_name, email, source, article_title)
-        )
-    """)
-    conn.commit()
-    conn.close()
+    conn = get_db_connection()
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS harvested_records (
+                    id BIGSERIAL PRIMARY KEY,
+                    display_name TEXT NOT NULL,
+                    email TEXT,
+                    institution_name TEXT,
+                    institution_country TEXT,
+                    openalex_id TEXT,
+                    source TEXT NOT NULL,
+                    article_title TEXT,
+                    article_url TEXT,
+                    specialisation TEXT,
+                    keywords TEXT,
+                    created_at TIMESTAMPTZ DEFAULT NOW(),
+                    UNIQUE(display_name, email, source, article_title)
+                )
+            """)
+        conn.commit()
+    finally:
+        conn.close()
 
 class GSIDConsoleHandler(SimpleHTTPRequestHandler):
     def end_headers(self):
@@ -66,7 +77,7 @@ class GSIDConsoleHandler(SimpleHTTPRequestHandler):
             self.get_synthesized()
         else:
             # Fallback to default static file server
-            super().do_GET()
+                super().do_GET()
 
     def do_POST(self):
         parsed_url = urlparse(self.path)
@@ -98,20 +109,26 @@ class GSIDConsoleHandler(SimpleHTTPRequestHandler):
             self.end_headers()
 
     def send_json(self, status_code, data):
+        json_bytes = json.dumps(data).encode('utf-8')
         self.send_response(status_code)
         self.send_header('Content-Type', 'application/json')
+        self.send_header('Content-Length', str(len(json_bytes)))
         self.end_headers()
-        self.wfile.write(json.dumps(data).encode('utf-8'))
+        self.wfile.write(json_bytes)
 
     def get_status(self):
-        db_exists = os.path.exists(DB_FILE)
+        db_exists = False
         count = 0
-        if db_exists:
-            try:
-                conn = sqlite3.connect(DB_FILE)
-                c = conn.cursor()
-                c.execute("SELECT count(*) FROM harvested_records")
+        try:
+            conn = get_db_connection()
+            with conn.cursor() as c:
+                c.execute("SELECT COUNT(*) FROM harvested_records")
                 count = c.fetchone()[0]
+            db_exists = True
+        except Exception:
+            pass
+        finally:
+            try:
                 conn.close()
             except Exception:
                 pass
@@ -130,25 +147,21 @@ class GSIDConsoleHandler(SimpleHTTPRequestHandler):
         })
 
     def get_records(self):
-        if not os.path.exists(DB_FILE):
-            self.send_json(200, [])
-            return
-        
         try:
-            conn = sqlite3.connect(DB_FILE)
-            conn.row_factory = sqlite3.Row
-            c = conn.cursor()
-            c.execute("SELECT * FROM harvested_records ORDER BY id DESC LIMIT 500")
-            rows = c.fetchall()
-            conn.close()
+            conn = get_db_connection()
+            with conn.cursor(cursor_factory=RealDictCursor) as c:
+                c.execute("SELECT * FROM harvested_records ORDER BY id DESC LIMIT 500")
+                rows = c.fetchall()
 
             records = [dict(r) for r in rows]
             self.send_json(200, records)
         except Exception as e:
             self.send_json(500, {"error": str(e)})
-
-    def update_record(self):
-        pass  # Will implement below, need body parameter
+        finally:
+            try:
+                conn.close()
+            except Exception:
+                pass
 
     def update_record(self, body):
         rec_id = body.get("id")
@@ -157,31 +170,35 @@ class GSIDConsoleHandler(SimpleHTTPRequestHandler):
             return
 
         try:
-            conn = sqlite3.connect(DB_FILE)
-            c = conn.cursor()
-            c.execute("""
-                UPDATE harvested_records 
-                SET display_name = ?, email = ?, institution_name = ?, institution_country = ?, 
-                    openalex_id = ?, article_title = ?, article_url = ?, specialisation = ?, keywords = ?, source = ?
-                WHERE id = ?
-            """, (
-                body.get("display_name", ""),
-                body.get("email", ""),
-                body.get("institution_name", ""),
-                body.get("institution_country", ""),
-                body.get("openalex_id", ""),
-                body.get("article_title", ""),
-                body.get("article_url", ""),
-                body.get("specialisation", ""),
-                body.get("keywords", ""),
-                body.get("source", "API"),
-                rec_id
-            ))
+            conn = get_db_connection()
+            with conn.cursor() as c:
+                c.execute("""
+                    UPDATE harvested_records
+                    SET display_name = %s, email = %s, institution_name = %s, institution_country = %s,
+                        openalex_id = %s, article_title = %s, article_url = %s, specialisation = %s, keywords = %s, source = %s
+                    WHERE id = %s
+                """, (
+                    body.get("display_name", ""),
+                    body.get("email", ""),
+                    body.get("institution_name", ""),
+                    body.get("institution_country", ""),
+                    body.get("openalex_id", ""),
+                    body.get("article_title", ""),
+                    body.get("article_url", ""),
+                    body.get("specialisation", ""),
+                    body.get("keywords", ""),
+                    body.get("source", "API"),
+                    rec_id
+                ))
             conn.commit()
-            conn.close()
             self.send_json(200, {"success": True})
         except Exception as e:
             self.send_json(500, {"error": str(e)})
+        finally:
+            try:
+                conn.close()
+            except Exception:
+                pass
 
     def run_script(self, body):
         script = body.get("script")
@@ -285,7 +302,7 @@ class GSIDConsoleHandler(SimpleHTTPRequestHandler):
             spec_idx = next((i for i, h in enumerate(headers) if "specialis" in h or "discipline" in h or "keyword" in h), -1)
             source_idx = next((i for i, h in enumerate(headers) if "source" in h), -1)
 
-            conn = sqlite3.connect(DB_FILE)
+            conn = get_db_connection()
             cursor = conn.cursor()
             inserted_count = 0
 
@@ -301,9 +318,10 @@ class GSIDConsoleHandler(SimpleHTTPRequestHandler):
 
                 try:
                     cursor.execute("""
-                        INSERT OR IGNORE INTO harvested_records 
+                        INSERT INTO harvested_records
                         (display_name, email, institution_name, institution_country, source, specialisation)
-                        VALUES (?, ?, ?, ?, ?, ?)
+                        VALUES (%s, %s, %s, %s, %s, %s)
+                        ON CONFLICT (display_name, email, source, article_title) DO NOTHING
                     """, (display_name, email, institution, country, source, spec))
                     if cursor.rowcount > 0:
                         inserted_count += 1
@@ -321,27 +339,26 @@ class GSIDConsoleHandler(SimpleHTTPRequestHandler):
         # Find latest gsid_export_*.csv
         csv_files = glob.glob(os.path.join("output", "gsid_export_*.csv"))
         if not csv_files:
-            # Fallback to standard clean directory query from database
-            if not os.path.exists(DB_FILE):
-                self.send_json(200, [])
-                return
+            # Fallback to database query for synthesized records
             try:
-                conn = sqlite3.connect(DB_FILE)
-                conn.row_factory = sqlite3.Row
-                c = conn.cursor()
-                # Simulate synthesis query: deduplicate on email, format
-                c.execute("""
-                    SELECT id, display_name as name, email, institution_name as affiliation, 
-                           institution_country as country, specialisation as discipline, source as sourceName
-                    FROM harvested_records 
-                    GROUP BY coalesce(nullif(email, ''), display_name)
-                    ORDER BY id DESC
-                """)
-                rows = c.fetchall()
-                conn.close()
+                conn = get_db_connection()
+                with conn.cursor(cursor_factory=RealDictCursor) as c:
+                    c.execute("""
+                        SELECT DISTINCT ON (COALESCE(NULLIF(email, ''), display_name))
+                            id, display_name as name, email, institution_name as affiliation,
+                            institution_country as country, specialisation as discipline, source as sourceName
+                        FROM harvested_records
+                        ORDER BY COALESCE(NULLIF(email, ''), display_name), id DESC
+                    """)
+                    rows = c.fetchall()
                 self.send_json(200, [dict(r) for r in rows])
             except Exception as e:
                 self.send_json(500, {"error": str(e)})
+            finally:
+                try:
+                    conn.close()
+                except Exception:
+                    pass
             return
 
         # Read latest CSV file
