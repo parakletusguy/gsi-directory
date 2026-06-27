@@ -142,14 +142,25 @@ document.addEventListener('DOMContentLoaded', async function() {
     const dead = Array.from(document.scripts);
     for (const old of dead) {
       const s = document.createElement('script');
-      for (const a of old.attributes) s.setAttribute(a.name, a.value);
+      for (const a of old.attributes) {
+        let value = a.value;
+        if ((a.name === 'src' || a.name === 'href') && /^['"].*['"]$/.test(value)) {
+          value = value.slice(1, -1);
+        }
+        s.setAttribute(a.name, value);
+      }
       s.textContent = old.textContent;
       // text/babel scripts with a src: fetch and inline. transformScriptTags
       // does XHR against the src, but blob:null/ from a file:// origin is
       // silently dropped. Inlining makes it a plain inline babel script,
       // which transformScriptTags handles unconditionally.
       if ((s.type === 'text/babel' || s.type === 'text/jsx') && s.src) {
-        const r = await fetch(s.src);
+        let src = s.getAttribute('src');
+        if (/^['"].*['"]$/.test(src)) {
+          src = src.slice(1, -1);
+          s.setAttribute('src', src);
+        }
+        const r = await fetch(src || s.src);
         s.textContent = await r.text();
         s.removeAttribute('src');
       }
