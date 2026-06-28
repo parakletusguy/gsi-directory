@@ -130,6 +130,25 @@
           if (loading) loading.textContent = msg;
         }
 
+        const _origFetch = window.fetch;
+        if (_origFetch) {
+          window.fetch = function(input, init) {
+            let urlStr = typeof input === 'string' ? input : (input && input.url ? input.url : '');
+            try {
+              const resolved = new URL(urlStr, window.location.origin).href.split('#')[0];
+              const current = window.location.href.split('#')[0];
+              if (resolved === current || resolved === window.location.origin + '/' || resolved === window.location.origin) {
+                return Promise.resolve({
+                  ok: false,
+                  status: 404,
+                  text: () => Promise.resolve("")
+                });
+              }
+            } catch (e) {}
+            return _origFetch.apply(this, arguments);
+          };
+        }
+
         // Error sink persists across replaceWith since it's on window, not the DOM.
         window.addEventListener(
           "error",
@@ -250,12 +269,13 @@
             .replace(/\s+integrity="[^"]*"/gi, "")
             .replace(/\s+crossorigin="[^"]*"/gi, "");
 
+          const fetchInterceptor = "(function(){const f=window.fetch;if(f){window.fetch=function(u,i){let s=typeof u==='string'?u:(u&&u.url?u.url:'');try{const r=new URL(s,location.origin).href.split('#')[0],c=location.href.split('#')[0];if(r===c||r===location.origin+'/'||r===location.origin)return Promise.resolve({ok:false,status:404,text:()=>Promise.resolve('')});}catch(e){}return f.apply(this,arguments);};}})();";
           const resourceScript =
             "<script>window.__resources = " +
             JSON.stringify(resourceMap)
               .split("</" + "script>")
               .join("<\\/" + "script>") +
-            ";</" +
+            ";" + fetchInterceptor + "</" +
             "script>";
           // Inject after <head> so the DOCTYPE stays first; prepending the script
           // would push the parser into quirks mode. DOMParser always emits a <head>
