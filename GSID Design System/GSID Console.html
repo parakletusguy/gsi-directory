@@ -139,6 +139,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     const dead = Array.from(document.scripts);
     for (const old of dead) {
       const s = document.createElement('script');
+      s.async = false;
       for (const a of old.attributes) s.setAttribute(a.name, a.value);
       s.textContent = old.textContent;
       // text/babel scripts with a src: fetch and inline. transformScriptTags

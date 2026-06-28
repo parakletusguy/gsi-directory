@@ -278,6 +278,7 @@
           const dead = Array.from(document.scripts);
           for (const old of dead) {
             const s = document.createElement("script");
+            s.async = false;
             for (const a of old.attributes) {
               let value = a.value;
               if (
